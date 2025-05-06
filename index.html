@@ -9,6 +9,14 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
   <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    :root{
+      --main-color:#4caf50;
+    }
     .main {
       display: flex;
     }
@@ -75,10 +83,14 @@
   </div>
 
   <!-- footer -->
+  <footer>
+    <p></p>
+  </footer>
   <!-- javaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 
   <script>
+
     class Item {
   constructor(name, price, description, img) {
     this.name = name;
@@ -113,7 +125,81 @@ const itemList1 = [
 
 let key='';
     
+function displayList(itemL){
 
+//main container
+const listItem = document.createElement('div');
+      listItem.id = `item-${itemL.name}.jpg`;
+      listItem.classList = 'list list-body row align-items-start';
+      const att = document.createAttribute('style');
+      att.value = 'display: flex; flex-direction: row;';
+      listItem.setAttributeNode(att);
+
+      //text
+      const p = document.createElement('p');
+      p.classList = 'col';
+      p.textContent = `${itemL.name} ${itemL.price}`;
+      listItem.appendChild(p);
+
+      //button container
+      const buttonContainer = document.createElement('div')
+      buttonContainer.classList='col';
+
+
+      // add button
+      const menos = document.createElement('button');
+      menos.id = `list-${itemL.name}--`;
+      menos.type = 'button';
+      menos.classList = 'btn btn-primary ';
+      menos.textContent = '-';
+      buttonContainer.appendChild(menos);
+
+      //display quantity
+      const quantity = document.createElement('button');
+      quantity.classList = '';
+      quantity.id = `list-${itemL.name}-q`;
+      quantity.textContent = document.getElementById(`cart-${itemL.name}-q`).textContent;
+      buttonContainer.appendChild(quantity);
+
+      //minus button
+      const mas = document.createElement('button');
+      mas.id = `list-${itemL.name}-+`;
+      mas.type = 'button';
+      mas.classList = 'btn btn-primary';
+      mas.textContent = '+';
+      buttonContainer.appendChild(mas);
+
+      //clear button
+      const clear1 = document.createElement('button');
+      clear1.id = `list-${itemL.name}-menos`;
+      clear1.type = 'button';
+      clear1.classList = 'btn btn-danger';
+      clear1.textContent = 'delete';
+      clear1.addEventListener('click', function () {});
+      buttonContainer.appendChild(clear1);
+      listItem.append(buttonContainer);
+
+      document.getElementById('collapseWidthExample').append(listItem);
+
+      document.getElementById(`list-${itemL.name}-+`).addEventListener('click', function () {
+        let q = document.getElementById(`list-${itemL.name}-q`).textContent;
+        q = Number(q);
+        document.getElementById(`list-${itemL.name}-q`).textContent = q + 1;
+      });
+
+      document.getElementById(`list-${itemL.name}--`).addEventListener('click', function () {
+        let q = document.getElementById(`list-${itemL.name}-q`).textContent;
+        q = Number(q);
+        if (q != 0) {
+          document.getElementById(`list-${itemL.name}-q`).textContent = q - 1;
+        }
+      });
+
+      document.getElementById(`list-${itemL.name}-menos`).addEventListener('click', function () {
+        document.getElementById(`item-${itemL.name}.jpg`).remove();
+
+      });
+}
     function displayCard(itemList) {
       document.getElementById('shop').innerHTML = '';
       itemList.forEach((itemL, index) => {
@@ -201,82 +287,23 @@ let key='';
           try {
             let q = Number(document.getElementById(`cart-${itemL.name}-q`).textContent);
             let listq = Number(document.getElementById(`list-${itemL.name}-q`).textContent);
-            console.log(q, listq);
             document.getElementById(`list-${itemL.name}-q`).textContent = q + listq;
             document.getElementById(`cart-${itemL.name}-q`).innerHTML = 0;
-            console.log('n');
           } catch {
-            //main container
-            const listItem = document.createElement('div');
-            listItem.id = `item-${itemL.name}.jpg`;
-            listItem.classList = 'list list-body row align-items-start';
-            const att = document.createAttribute('style');
-            att.value = 'display: flex; flex-direction: row;';
-            listItem.setAttributeNode(att);
+            
+            displayList(itemL);
+            try{
+              console.log('n')
+              const list =localStorage.getItem('list');
+              const list1=JSON.parse(list)
+              console.log(list);
+              list.push(itemL);
+              console.log(list);
+              localStorage.setItem('list',[JSON.stringify(list)])
+            }catch{
+              localStorage.setItem('list',[JSON.stringify(itemL)])
+            }
 
-            //text
-            const p = document.createElement('p');
-            p.classList = 'col';
-            p.textContent = `${itemL.name} ${itemL.price}`;
-            listItem.appendChild(p);
-
-            //button container
-            const buttonContainer = document.createElement('div')
-            buttonContainer.classList='col';
-
-
-            // add button
-            const menos = document.createElement('button');
-            menos.id = `list-${itemL.name}--`;
-            menos.type = 'button';
-            menos.classList = 'btn btn-primary ';
-            menos.textContent = '-';
-            buttonContainer.appendChild(menos);
-
-            //display quantity
-            const quantity = document.createElement('button');
-            quantity.classList = '';
-            quantity.id = `list-${itemL.name}-q`;
-            quantity.textContent = document.getElementById(`cart-${itemL.name}-q`).textContent;
-            buttonContainer.appendChild(quantity);
-
-            //minus button
-            const mas = document.createElement('button');
-            mas.id = `list-${itemL.name}-+`;
-            mas.type = 'button';
-            mas.classList = 'btn btn-primary';
-            mas.textContent = '+';
-            buttonContainer.appendChild(mas);
-
-            //clear button
-            const clear1 = document.createElement('button');
-            clear1.id = `list-${itemL.name}-menos`;
-            clear1.type = 'button';
-            clear1.classList = 'btn btn-danger';
-            clear1.textContent = 'delete';
-            clear1.addEventListener('click', function () {});
-            buttonContainer.appendChild(clear1);
-            listItem.append(buttonContainer);
-
-            document.getElementById('collapseWidthExample').append(listItem);
-
-            document.getElementById(`list-${itemL.name}-+`).addEventListener('click', function () {
-              let q = document.getElementById(`list-${itemL.name}-q`).textContent;
-              q = Number(q);
-              document.getElementById(`list-${itemL.name}-q`).textContent = q + 1;
-            });
-
-            document.getElementById(`list-${itemL.name}--`).addEventListener('click', function () {
-              let q = document.getElementById(`list-${itemL.name}-q`).textContent;
-              q = Number(q);
-              if (q != 0) {
-                document.getElementById(`list-${itemL.name}-q`).textContent = q - 1;
-              }
-            });
-
-            document.getElementById(`list-${itemL.name}-menos`).addEventListener('click', function () {
-              document.getElementById(`item-${itemL.name}.jpg`).remove();
-            });
           }
         });
       });
@@ -289,6 +316,13 @@ let key='';
     })
 
     displayCard(itemList1);
+
+    if(localStorage.getItem('visited')){
+      alert("welcome back happy to see you aguain😊")
+    }else{
+      localStorage.setItem('visited',true);
+      alert('welcome to my shoop')
+    }
 
   </script>
 </body>
