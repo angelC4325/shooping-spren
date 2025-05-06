@@ -1,250 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shooping spreen</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<style>
-    .main{
-        display: flex;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>shooping spreen</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    .main {
+      display: flex;
     }
-    .list{
-        width: auto;
+    .list {
+      width: auto;
     }
-    #shop{
+    #shop {
       display: flex;
       flex-wrap: wrap;
       flex-direction: row;
       width: auto;
     }
-    .cart{
+    .cart {
       margin: 5px;
     }
-    
-</style>
+  </style>
 </head>
 <body>
-    <!-- header -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">The Shop</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <!-- theme -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            theme
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">light</a></li>
-            <li><a class="dropdown-item" href="#">dark</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-      </ul>
-      
+  <!-- header -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">The Shop</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <!-- theme -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              theme
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">light</a></li>
+              <li><a class="dropdown-item" href="#">dark</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
-    <!-- search barr -->
-    <form class="d-flex" role="search">
-      <button id="cart-button" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="true" aria-controls="collapseWidthExample">
-          cart
-        </button>
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    <!-- main cotainer -->
-    <div class="container-fluid main">
-        <!-- list container -->
-           <div id="item0" class="container text-center" style="max-width:350px; padding: 0; margin: 0; display: none;">
-            <div class="collapse collapse-horizontal row align-items-start" id="collapseWidthExample">
-            </div>
-          </div>
+  </nav>
+
+  <!-- search barr -->
+  <form class="d-flex" role="search">
+    <button id="cart-button" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="true" aria-controls="collapseWidthExample">cart</button>
+    <input id="searchBar" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+
+  <!-- main cotainer -->
+  <div class="container-fluid main">
+    <!-- list container -->
+    <div id="item0" class="container text-center" style="max-width:350px; padding: 0; margin: 0;">
+      <div class="collapse collapse-horizontal row align-items-start" id="collapseWidthExample"></div>
+    </div>
+
     <!-- item contianer -->
-    <div id='shop' class="container-fluid" >
-    </div>
-</div>
-    <!-- footer -->
-    <!-- javaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-    <script>
-      class item{
-    constructor(name,price,description,img){
-        this.name=name;
-        this.price=price;
-        this.description=description;
-        this.img=img;
-    }
+    <div id='shop' class="container-fluid"></div>
+  </div>
+
+  <!-- footer -->
+  <!-- javaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+
+  <script>
+    class Item {
+  constructor(name, price, description, img) {
+    this.name = name;
+    this.price = price;
+    this.description = description;
+    this.img = img;
+  }
 }
-let itemList=[];
-milk = new item('milk',7,'this item is abailable in the store','milk.jfif');
-itemList.push(milk)
-hotwheels = new item('hotwheels',10,'a really fast car','hot.jfif')
-itemList.push(hotwheels)
-console.log(hotwheels)
-function displayCard(){
-  document.getElementById('shop').innerHTML='';
-    itemList.forEach((itemL,index)=>{
+
+const itemList1 = [
+  new Item('Milk', 7, 'Fresh whole milk, 1 liter.', 'milk.jpg'),
+  new Item('Bread', 3, 'Soft white sandwich bread.', 'bread.jpg'),
+  new Item('Eggs', 5, 'A dozen farm-fresh eggs.', 'eggs.jpg'),
+  new Item('Butter', 4, 'Creamy unsalted butter.', 'butter.jpg'),
+  new Item('Cheese', 6, 'Mild cheddar cheese block.', 'cheese.jpg'),
+  new Item('Apples', 4, 'Crisp red apples, 1kg.', 'apples.jpg'),
+  new Item('Bananas', 2, 'Ripe bananas, 1kg.', 'bananas.jpg'),
+  new Item('Rice', 8, 'White basmati rice, 2kg.', 'rice.jpg'),
+  new Item('Pasta', 3, 'Durum wheat spaghetti.', 'pasta.jpg'),
+  new Item('Tomato Sauce', 2, 'Classic tomato pasta sauce.', 'sauce.jpg'),
+  new Item('Cereal', 5, 'Honey oat breakfast cereal.', 'cereal.jpg'),
+  new Item('Juice', 4, 'Orange juice, 1 liter.', 'juice.jpg'),
+  new Item('Yogurt', 3, 'Plain Greek yogurt.', 'yogurt.jpg'),
+  new Item('Coffee', 10, 'Ground Arabica coffee.', 'coffee.jpg'),
+  new Item('Tea', 4, 'Black tea bags, 25 count.', 'tea.jpg'),
+  new Item('Toilet Paper', 6, 'Pack of 6 rolls.', 'toiletpaper.jpg'),
+  new Item('Soap', 2, 'Mild body soap bar.', 'soap.jpg'),
+  new Item('Shampoo', 5, 'Herbal shampoo, 250ml.', 'shampoo.jpg'),
+  new Item('Toothpaste', 3, 'Minty fresh toothpaste.', 'toothpaste.jpg'),
+  new Item('Detergent', 7, 'Laundry detergent, 1kg.', 'detergent.jpg')
+];
+
+let key='';
+    
+
+    function displayCard(itemList) {
+      document.getElementById('shop').innerHTML = '';
+      itemList.forEach((itemL, index) => {
         //main div
         const card = document.createElement('div');
-            card.classList='cart shadow p-3 mb-5 bg-body-tertiary rounded';
-            card.style='width: 18rem;'
+        card.classList = 'cart shadow p-3 mb-5 bg-body-tertiary rounded';
+        card.style = 'width: 18rem;';
+
         //image
         const img = document.createElement('img');
-            img.src=`img/${itemL.img}`;
-            img.className='cart-img-top';
-            img.alt="...";
+        img.src = `img/${itemL.img}`;
+        img.className = 'cart-img-top';
+        img.alt = '...';
         card.append(img);
+
         //div that contian the text and buttons
         const body = document.createElement('div');
-            body.className='cart-body';
-            const name = document.createElement('h5');
-                name.textContent=`${itemL.name}`;
-                name.className='cart-title';
+        body.className = 'cart-body';
+
+        const name = document.createElement('h5');
+        name.textContent = `${itemL.name}  $${itemL.price}`;
+        name.className = 'cart-title';
         body.append(name);
+
         //text
-        const text=document.createElement('p');
-            text.className='cart-text';
-            text.textContent=`${itemL.description}`;
+        const text = document.createElement('p');
+        text.className = 'cart-text';
+        text.textContent = `${itemL.description}`;
         body.append(text);
+
         //constains buttons
         const buttons = document.createElement('div');
-            buttons.classList='btn-group container-fluid';
-            buttons.role='group';
-            //minus button
-            const buttonMenos = document.createElement('button');
-                buttonMenos.id=`cart-${itemL.name}--`;
-                buttonMenos.type='button';
-                buttonMenos.classList='btn btn-primary';
-                buttonMenos.textContent='-';
-            buttons.append(buttonMenos);
-            //display quantity
-            const buttonQ = document.createElement('button');
-                buttonQ.id=`cart-${itemL.name}-q`;
-                buttonQ.textContent='0';
-                console.log(buttonQ.textContent)
-            //minus button
-            buttons.append(buttonQ);
-            const buttonMas = document.createElement('button');
-                buttonMas.id=`cart-${itemL.name}-+`;
-                buttonMas.type='button';
-                buttonMas.classList='btn btn-primary';
-                buttonMas.textContent='+';
-            buttons.append(buttonMas);
-            //delete buttton
-            const buttonAd= document.createElement('button');
-                buttonAd.id=`cart-${itemL.name}-add`;
-                buttonAd.type='button';
-                buttonAd.classList='btn btn-success';
-                buttonAd.textContent='add to cart';
-            buttons.append(buttonAd);
+        buttons.classList = 'btn-group container-fluid';
+        buttons.role = 'group';
+
+        //minus button
+        const buttonMenos = document.createElement('button');
+        buttonMenos.id = `cart-${itemL.name}--`;
+        buttonMenos.type = 'button';
+        buttonMenos.classList = 'btn btn-primary';
+        buttonMenos.textContent = '-';
+        buttons.append(buttonMenos);
+
+        //display quantity
+        const buttonQ = document.createElement('button');
+        buttonQ.id = `cart-${itemL.name}-q`;
+        buttonQ.textContent = '0';
+        buttons.append(buttonQ);
+
+        //plus button
+        const buttonMas = document.createElement('button');
+        buttonMas.id = `cart-${itemL.name}-+`;
+        buttonMas.type = 'button';
+        buttonMas.classList = 'btn btn-primary';
+        buttonMas.textContent = '+';
+        buttons.append(buttonMas);
+
+        //add to cart button
+        const buttonAd = document.createElement('button');
+        buttonAd.id = `cart-${itemL.name}-add`;
+        buttonAd.type = 'button';
+        buttonAd.classList = 'btn btn-success';
+        buttonAd.textContent = 'add to cart';
+        buttons.append(buttonAd);
+
         body.append(buttons);
         card.append(body);
-        console.log()
-        document.getElementById('shop').append(card);        
-    
+        document.getElementById('shop').append(card);
+
+        document.getElementById(`cart-${itemL.name}-+`).addEventListener('click', function () {
+          let q = document.getElementById(`cart-${itemL.name}-q`).textContent;
+          q = Number(q);
+          document.getElementById(`cart-${itemL.name}-q`).textContent = q + 1;
+        });
+
+        document.getElementById(`cart-${itemL.name}--`).addEventListener('click', function () {
+          let q = document.getElementById(`cart-${itemL.name}-q`).textContent;
+          q = Number(q);
+          if (q != 0) {
+            document.getElementById(`cart-${itemL.name}-q`).textContent = q - 1;
+          }
+        });
+        
+        document.getElementById(`cart-${itemL.name}-add`).addEventListener('click', function () {
+          try {
+            let q = Number(document.getElementById(`cart-${itemL.name}-q`).textContent);
+            let listq = Number(document.getElementById(`list-${itemL.name}-q`).textContent);
+            console.log(q, listq);
+            document.getElementById(`list-${itemL.name}-q`).textContent = q + listq;
+            document.getElementById(`cart-${itemL.name}-q`).innerHTML = 0;
+            console.log('n');
+          } catch {
+            //main container
+            const listItem = document.createElement('div');
+            listItem.id = `item-${itemL.name}.jpg`;
+            listItem.classList = 'list list-body row align-items-start';
+            const att = document.createAttribute('style');
+            att.value = 'display: flex; flex-direction: row;';
+            listItem.setAttributeNode(att);
+
+            //text
+            const p = document.createElement('p');
+            p.classList = 'col';
+            p.textContent = `${itemL.name} ${itemL.price}`;
+            listItem.appendChild(p);
+
+            //button container
+            const buttonContainer = document.createElement('div')
+            buttonContainer.classList='col';
 
 
-document.getElementById(`cart-${itemL.name}-+`).addEventListener('click',function(){
-    let q=document.getElementById(`cart-${itemL.name}-q`).textContent
-    q=Number(q)
-    document.getElementById(`cart-${itemL.name}-q`).textContent=q+1
-})
-document.getElementById(`cart-${itemL.name}--`).addEventListener('click',function(){
-    let q=document.getElementById(`cart-${itemL.name}-q`).textContent
-    q=Number(q)
-    if(q!=0){
-    document.getElementById(`cart-${itemL.name}-q`).textContent=q-1}
-})
-document.getElementById(`cart-${itemL.name}-add`).addEventListener('click',function(){
-try{
-    let q=Number(document.getElementById(`cart-${itemL.name}-q`).textContent)
-    let listq=Number(document.getElementById(`list-${itemL.name}-q`).textContent)
-    console.log(q,listq)
-    document.getElementById(`list-${itemL.name}-q`).textContent=q+listq;
-    document.getElementById(`cart-${itemL.name}-q`).innerHTML=0;
-    console.log('n')
-}catch{
-  //main container
-  const listItem =document.createElement('div')
-  listItem.id=`item-${itemL.name}.jfif`;
-  listItem.classList='list list-body row align-items-start';
-  const att= document.createAttribute('style');
-  att.value='display: flex; flex-direction: row;';
-  listItem.setAttributeNode(att)
-  //text
-  const p=document.createElement('p');
-  p.classList='col';
-  p.textContent=`${itemL.name} ${itemL.price}`;
-  listItem.appendChild(p);
-  // add button
-  const menos= document.createElement('button');
-  menos.id=`list-${itemL.name}--`;
-  menos.type="button";
-  menos.classList='btn btn-primary col';
-  menos.textContent='-';
-  listItem.appendChild(menos);
-  //display quantity
-  const quantity= document.createElement('button');
-  quantity.classList='col'
-  quantity.id=`list-${itemL.name}-q`;
-  quantity.textContent=document.getElementById(`cart-${itemL.name}-q`).textContent;
-  listItem.appendChild(quantity);
-  //minus button
-  const mas= document.createElement('button');
-  mas.id=`list-${itemL.name}-+`;
-  mas.type="button";
-  mas.classList='btn btn-primary col';
-  mas.textContent='+';
-  listItem.appendChild(mas)
-  //clear button
-  const clear1= document.createElement('button');
-  clear1.id=`list-${itemL.name}-menos`;
-  clear1.type="button";
-  clear1.classList='btn btn-danger col';
-  clear1.textContent='delete';
-  clear1.addEventListener('click', function() {
-    
-  })
-  listItem.appendChild(clear1)
-  document.getElementById('collapseWidthExample').append(listItem);
-  document.getElementById(`list-${itemL.name}-+`).addEventListener('click',function(){
-    let q=document.getElementById(`list-${itemL.name}-q`).textContent
-    q=Number(q)
-    document.getElementById(`list-${itemL.name}-q`).textContent=q+1
-})
-document.getElementById(`list-${itemL.name}--`).addEventListener('click',function(){
-    let q=document.getElementById(`list-${itemL.name}-q`).textContent
-    q=Number(q)
-    if(q!=0){
-    document.getElementById(`list-${itemL.name}-q`).textContent=q-1}
-})
-document.getElementById(`list-${itemL.name}-menos`).addEventListener('click',function(){
-  document.getElementById(`item-${itemL.name}.jfif`).remove();
-})        
-}
-})})}
-displayCard();
-document.getElementById('cart-button').addEventListener('click',setTimeout(function(){
-  const display1=document.getElementById('item0')
-  console.log(display1.style.display)
-  if(display1.style.display!='block'){
-    display1.style.display='block';
-  }else{
-    display1.style.display='none';
-  }
-},1000))
+            // add button
+            const menos = document.createElement('button');
+            menos.id = `list-${itemL.name}--`;
+            menos.type = 'button';
+            menos.classList = 'btn btn-primary ';
+            menos.textContent = '-';
+            buttonContainer.appendChild(menos);
 
-    </script>
+            //display quantity
+            const quantity = document.createElement('button');
+            quantity.classList = '';
+            quantity.id = `list-${itemL.name}-q`;
+            quantity.textContent = document.getElementById(`cart-${itemL.name}-q`).textContent;
+            buttonContainer.appendChild(quantity);
+
+            //minus button
+            const mas = document.createElement('button');
+            mas.id = `list-${itemL.name}-+`;
+            mas.type = 'button';
+            mas.classList = 'btn btn-primary';
+            mas.textContent = '+';
+            buttonContainer.appendChild(mas);
+
+            //clear button
+            const clear1 = document.createElement('button');
+            clear1.id = `list-${itemL.name}-menos`;
+            clear1.type = 'button';
+            clear1.classList = 'btn btn-danger';
+            clear1.textContent = 'delete';
+            clear1.addEventListener('click', function () {});
+            buttonContainer.appendChild(clear1);
+            listItem.append(buttonContainer);
+
+            document.getElementById('collapseWidthExample').append(listItem);
+
+            document.getElementById(`list-${itemL.name}-+`).addEventListener('click', function () {
+              let q = document.getElementById(`list-${itemL.name}-q`).textContent;
+              q = Number(q);
+              document.getElementById(`list-${itemL.name}-q`).textContent = q + 1;
+            });
+
+            document.getElementById(`list-${itemL.name}--`).addEventListener('click', function () {
+              let q = document.getElementById(`list-${itemL.name}-q`).textContent;
+              q = Number(q);
+              if (q != 0) {
+                document.getElementById(`list-${itemL.name}-q`).textContent = q - 1;
+              }
+            });
+
+            document.getElementById(`list-${itemL.name}-menos`).addEventListener('click', function () {
+              document.getElementById(`item-${itemL.name}.jpg`).remove();
+            });
+          }
+        });
+      });
+    }
+
+    document.getElementById('searchBar').addEventListener('keyup',function(event){
+      const word=document.getElementById('searchBar').value.toLowerCase();
+      const filtered = itemList1.filter(item => item.name.toLowerCase().includes(word));
+      displayCard(filtered);
+    })
+
+    displayCard(itemList1);
+
+  </script>
 </body>
 </html>
