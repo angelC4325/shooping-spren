@@ -66,7 +66,7 @@
       </div>
     </div>
   </nav>
-
+  <div id="timer" class="fixed-button">...</div>
   <!-- search barr -->
   <form class="d-flex" role="search">
     <button id="cart-button" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="true" aria-controls="collapseWidthExample">cart</button>
@@ -164,7 +164,8 @@ const listItem = document.createElement('div');
       const quantity = document.createElement('button');
       quantity.classList = '';
       quantity.id = `list-${itemL.name}-q`;
-      quantity.textContent = document.getElementById(`cart-${itemL.name}-q`).textContent;
+      quantity.classList='Qbutton';
+      quantity.textContent = itemL.quantity;
       buttonContainer.appendChild(quantity);
 
       //minus button
@@ -192,11 +193,7 @@ const listItem = document.createElement('div');
         q = Number(q);
         document.getElementById(`list-${itemL.name}-q`).textContent = q + 1;
         itemL.quantity=q+1;
-        let list = localStorage.getItem('list');
-              list= JSON.parse(list);
-              list.quantity=q+1;
-              list= JSON.stringify(list);
-              localStorage.setItem('list',list);
+        setQ(itemL.name,q+1)
       });
 
       document.getElementById(`list-${itemL.name}--`).addEventListener('click', function () {
@@ -205,12 +202,7 @@ const listItem = document.createElement('div');
         if (q != 0) {
           document.getElementById(`list-${itemL.name}-q`).textContent = q - 1;
           itemL.quantity=q-1;
-          let list = localStorage.getItem('list');
-              list= JSON.parse(list);
-              
-
-              list= JSON.stringify(list);
-              localStorage.setItem('list',list);
+          setQ(itemL.name,q-1)
         }
       });
 
@@ -321,6 +313,7 @@ const listItem = document.createElement('div');
             let listq = Number(document.getElementById(`list-${itemL.name}-q`).textContent);
             document.getElementById(`list-${itemL.name}-q`).textContent = q + listq;
             document.getElementById(`cart-${itemL.name}-q`).innerHTML = 0;
+            setQ(itemL.name,q+listq)
 
           } catch {
             
@@ -359,8 +352,27 @@ const listItem = document.createElement('div');
       localStorage.setItem('visited',true);
       alert('welcome to my shoop')
     }
-
-    function delet(item, index, arr,name){}
+    let list3 = localStorage.getItem('list');
+    list3= JSON.parse(list3);
+    list3.forEach(lit=>{
+      displayList(lit)
+    })
+    function setQ(name,quantity){
+    let list4 = localStorage.getItem('list');
+    list4= JSON.parse(list4);
+    list4.forEach(function(lit){
+      if(lit.name==name){
+        lit.quantity=quantity;
+      }
+    })
+    list4= JSON.stringify(list4);
+    localStorage.setItem('list',list4);
+    }
+    let time=0;
+    setInterval(function(){
+      time++;
+      document.getElementById('timer').textContent=`${time} seconds`;
+    },1000)
 
   </script>
 </body>
