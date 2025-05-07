@@ -32,6 +32,9 @@
     .cart {
       margin: 5px;
     }
+    .Qbutton{
+      padding: 5px;
+    }
   </style>
 </head>
 <body>
@@ -92,39 +95,42 @@
   <script>
 
     class Item {
-  constructor(name, price, description, img) {
+  constructor(name, price, description, img, quantity) {
     this.name = name;
     this.price = price;
     this.description = description;
     this.img = img;
+    this.quantity=quantity;
   }
 }
 
 const itemList1 = [
-  new Item('Milk', 7, 'Fresh whole milk, 1 liter.', 'milk.jpg'),
-  new Item('Bread', 3, 'Soft white sandwich bread.', 'bread.jpg'),
-  new Item('Eggs', 5, 'A dozen farm-fresh eggs.', 'eggs.jpg'),
-  new Item('Butter', 4, 'Creamy unsalted butter.', 'butter.jpg'),
-  new Item('Cheese', 6, 'Mild cheddar cheese block.', 'cheese.jpg'),
-  new Item('Apples', 4, 'Crisp red apples, 1kg.', 'apples.jpg'),
-  new Item('Bananas', 2, 'Ripe bananas, 1kg.', 'bananas.jpg'),
-  new Item('Rice', 8, 'White basmati rice, 2kg.', 'rice.jpg'),
-  new Item('Pasta', 3, 'Durum wheat spaghetti.', 'pasta.jpg'),
-  new Item('Tomato Sauce', 2, 'Classic tomato pasta sauce.', 'sauce.jpg'),
-  new Item('Cereal', 5, 'Honey oat breakfast cereal.', 'cereal.jpg'),
-  new Item('Juice', 4, 'Orange juice, 1 liter.', 'juice.jpg'),
-  new Item('Yogurt', 3, 'Plain Greek yogurt.', 'yogurt.jpg'),
-  new Item('Coffee', 10, 'Ground Arabica coffee.', 'coffee.jpg'),
-  new Item('Tea', 4, 'Black tea bags, 25 count.', 'tea.jpg'),
-  new Item('Toilet Paper', 6, 'Pack of 6 rolls.', 'toiletpaper.jpg'),
-  new Item('Soap', 2, 'Mild body soap bar.', 'soap.jpg'),
-  new Item('Shampoo', 5, 'Herbal shampoo, 250ml.', 'shampoo.jpg'),
-  new Item('Toothpaste', 3, 'Minty fresh toothpaste.', 'toothpaste.jpg'),
-  new Item('Detergent', 7, 'Laundry detergent, 1kg.', 'detergent.jpg')
+  new Item('Milk', 7, 'Fresh whole milk, 1 liter.', 'milk.jpg',0),
+  new Item('Bread', 3, 'Soft white sandwich bread.', 'bread.jpg',0),
+  new Item('Eggs', 5, 'A dozen farm-fresh eggs.', 'eggs.jpg',0),
+  new Item('Butter', 4, 'Creamy unsalted butter.', 'butter.jpg',0),
+  new Item('Cheese', 6, 'Mild cheddar cheese block.', 'cheese.jpg',0),
+  new Item('Apples', 4, 'Crisp red apples, 1kg.', 'apples.jpg',0),
+  new Item('Bananas', 2, 'Ripe bananas, 1kg.', 'bananas.jpg',0),
+  new Item('Rice', 8, 'White basmati rice, 2kg.', 'rice.jpg',0),
+  new Item('Pasta', 3, 'Durum wheat spaghetti.', 'pasta.jpg',0),
+  new Item('Tomato Sauce', 2, 'Classic tomato pasta sauce.', 'sauce.jpg',0),
+  new Item('Cereal', 5, 'Honey oat breakfast cereal.', 'cereal.jpg',0),
+  new Item('Juice', 4, 'Orange juice, 1 liter.', 'juice.jpg',0),
+  new Item('Yogurt', 3, 'Plain Greek yogurt.', 'yogurt.jpg',0),
+  new Item('Coffee', 10, 'Ground Arabica coffee.', 'coffee.jpg',0),
+  new Item('Tea', 4, 'Black tea bags, 25 count.', 'tea.jpg',0),
+  new Item('Toilet Paper', 6, 'Pack of 6 rolls.', 'toiletpaper.jpg',0),
+  new Item('Soap', 2, 'Mild body soap bar.', 'soap.jpg',0),
+  new Item('Shampoo', 5, 'Herbal shampoo, 250ml.', 'shampoo.jpg',0),
+  new Item('Toothpaste', 3, 'Minty fresh toothpaste.', 'toothpaste.jpg',0),
+  new Item('Detergent', 7, 'Laundry detergent, 1kg.', 'detergent.jpg',0)
 ];
 
 let key='';
-    
+
+
+
 function displayList(itemL){
 
 //main container
@@ -185,6 +191,12 @@ const listItem = document.createElement('div');
         let q = document.getElementById(`list-${itemL.name}-q`).textContent;
         q = Number(q);
         document.getElementById(`list-${itemL.name}-q`).textContent = q + 1;
+        itemL.quantity=q+1;
+        let list = localStorage.getItem('list');
+              list= JSON.parse(list);
+              list.quantity=q+1;
+              list= JSON.stringify(list);
+              localStorage.setItem('list',list);
       });
 
       document.getElementById(`list-${itemL.name}--`).addEventListener('click', function () {
@@ -192,11 +204,27 @@ const listItem = document.createElement('div');
         q = Number(q);
         if (q != 0) {
           document.getElementById(`list-${itemL.name}-q`).textContent = q - 1;
+          itemL.quantity=q-1;
+          let list = localStorage.getItem('list');
+              list= JSON.parse(list);
+              
+
+              list= JSON.stringify(list);
+              localStorage.setItem('list',list);
         }
       });
 
       document.getElementById(`list-${itemL.name}-menos`).addEventListener('click', function () {
         document.getElementById(`item-${itemL.name}.jpg`).remove();
+        let str=localStorage.getItem('list');
+        let str1=JSON.parse(str)
+        console.log(str1)
+        const str2=str1.filter(function(item){
+          console.log(item.name,itemL.name)
+          return item.name!=itemL.name;
+        })
+        console.log(str2)
+        localStorage.setItem('list',JSON.stringify(str2))
 
       });
 }
@@ -246,6 +274,7 @@ const listItem = document.createElement('div');
         //display quantity
         const buttonQ = document.createElement('button');
         buttonQ.id = `cart-${itemL.name}-q`;
+        buttonQ.classList='Qbutton';
         buttonQ.textContent = '0';
         buttons.append(buttonQ);
 
@@ -273,6 +302,7 @@ const listItem = document.createElement('div');
           let q = document.getElementById(`cart-${itemL.name}-q`).textContent;
           q = Number(q);
           document.getElementById(`cart-${itemL.name}-q`).textContent = q + 1;
+          itemL.quantity=q+1;
         });
 
         document.getElementById(`cart-${itemL.name}--`).addEventListener('click', function () {
@@ -280,28 +310,34 @@ const listItem = document.createElement('div');
           q = Number(q);
           if (q != 0) {
             document.getElementById(`cart-${itemL.name}-q`).textContent = q - 1;
+            itemL.quantity=q-1;
           }
         });
         
         document.getElementById(`cart-${itemL.name}-add`).addEventListener('click', function () {
           try {
+
             let q = Number(document.getElementById(`cart-${itemL.name}-q`).textContent);
             let listq = Number(document.getElementById(`list-${itemL.name}-q`).textContent);
             document.getElementById(`list-${itemL.name}-q`).textContent = q + listq;
             document.getElementById(`cart-${itemL.name}-q`).innerHTML = 0;
+
           } catch {
             
             displayList(itemL);
+
             try{
-              console.log('n')
-              const list =localStorage.getItem('list');
-              const list1=JSON.parse(list)
-              console.log(list);
+
+              let list = localStorage.getItem('list');
+              list= JSON.parse(list);
               list.push(itemL);
-              console.log(list);
-              localStorage.setItem('list',[JSON.stringify(list)])
+              list= JSON.stringify(list);
+              localStorage.setItem('list',list);
+
             }catch{
-              localStorage.setItem('list',[JSON.stringify(itemL)])
+              const str = JSON.stringify([itemL]);
+              localStorage.setItem('list',str);
+
             }
 
           }
@@ -323,6 +359,8 @@ const listItem = document.createElement('div');
       localStorage.setItem('visited',true);
       alert('welcome to my shoop')
     }
+
+    function delet(item, index, arr,name){}
 
   </script>
 </body>
