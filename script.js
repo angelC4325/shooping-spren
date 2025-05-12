@@ -221,13 +221,14 @@ if (getCookie('visited')) {
 }
 
 setCookie('visited', true);
-
+try{
 let list3 = localStorage.getItem('list');
 list3 = JSON.parse(list3);
 list3.forEach(lit => {
   displayList(lit);
 });
 displayTotal();
+}catch{}
 function setQ(name, quantity) {
   let list4 = localStorage.getItem('list');
   list4 = JSON.parse(list4);
@@ -293,6 +294,7 @@ function deleteCookie(name) {
 }
 
 function displayTotal(){
+  try{
   let list = localStorage.getItem('list');
   list = JSON.parse(list);
   let total=0;
@@ -301,4 +303,5 @@ function displayTotal(){
   })
   
     document.getElementById('total').textContent=`the total amount for your purchase is $${total}`;
+}catch{}
 }
