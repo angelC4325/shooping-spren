@@ -223,7 +223,7 @@ function displayTotal(){
 }catch{}
 }
 ````
-this function takes an array of clases to populate the list of selecteditems
+this function takes an array of clases to populate the list of selected items
 ````javaScript
 function displayCard(itemList) {
   document.getElementById('shop').innerHTML = '';
