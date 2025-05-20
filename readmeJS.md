@@ -41,7 +41,15 @@ class Item {
 }
 ````
 ## array method
-````javaScript````
+````javaScript
+// add quantity list
+  const mas = document.createElement('button');
+  mas.id = `list-${itemL.name}-+`;
+  mas.type = 'button';
+  mas.classList = 'btn btn-primary';
+  mas.textContent = '+';
+  buttonContainer.appendChild(mas);
+````
 ## looping/iteration
 ````javaScript
 list.forEach(lit=>{
@@ -139,6 +147,6 @@ document.getElementById('searchBar').addEventListener('keyup', () => {
 ````
 ## crud functionality
 ````javaScript
-
+list.push(itemL);
 ````
 
