@@ -42,13 +42,7 @@ class Item {
 ````
 ## array method
 ````javaScript
-// add quantity list
-  const mas = document.createElement('button');
-  mas.id = `list-${itemL.name}-+`;
-  mas.type = 'button';
-  mas.classList = 'btn btn-primary';
-  mas.textContent = '+';
-  buttonContainer.appendChild(mas);
+milk.SetQuantity(NewQuantity);
 ````
 ## looping/iteration
 ````javaScript
