@@ -97,7 +97,7 @@ the html is use to mark the structure of the file to ensure a proper interface
 - a container that can be hiden using the button above 
 - the complete list of abailable items 
 ---
-## javascript components
+# shooping spreen javascript components
 this javscript code is use to make the page responsive to the user's input
 
 ````javaScript
@@ -134,7 +134,7 @@ const itemList1 = [
   new Item('Detergent', 7, 'Laundry detergent, 1kg.', 'detergent-removebg-preview.png', 0)
 ];
 ````
-in order to populate the web page and give the nessesary information classes are utilise and initialise in this section
+in order to populate the web page and give the nessesary information classes are utilise and initialise in this section giving the follow properties name price quantity description name of the image and quantity order
 
 ````javaScript
 
@@ -223,7 +223,7 @@ function displayTotal(){
 }catch{}
 }
 ````
-this function takes an array of clases to populate the list of selected items
+this function takes an array of clases to populate the list of selected items utilizes name and quantity from the objest properties and prizes to properly display and amount and give the option to delete or manipulate the amount of the producs ordered
 ````javaScript
 function displayCard(itemList) {
   document.getElementById('shop').innerHTML = '';
@@ -325,7 +325,7 @@ function displayCard(itemList) {
   });
 }
 ````
-this functio takes an array and populates the section that show the abailable items in the page
+this section takes an array to populate the display section of the web page where the user can deside on the products that he wants to purchase each object have an image the name the price an small description and the buttons to deside the amount and move that amount towards the list section
 ````javaScript
 document.getElementById('searchBar').addEventListener('keyup', () => {
   const word = document.getElementById('searchBar').value.toLowerCase();
@@ -333,7 +333,7 @@ document.getElementById('searchBar').addEventListener('keyup', () => {
   displayCard(filtered);
 });
 ````
-this event listener only shoe the items that match in name in real time whith the input of the search barr
+this event listener only show the items that match in name in real time whith the input of the search barr
 ````javaScript
 displayCard(itemList1);
 
@@ -423,3 +423,4 @@ try {
 } catch {}
 ````
 this section is to chnage the theme of the page the options are light and dark
+
