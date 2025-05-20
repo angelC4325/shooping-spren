@@ -91,7 +91,15 @@ document.getElementById('dark-theme').addEventListener('click', () => {
 });
 ````
 ## comments & code realability
-````javaScript````
+````javaScript
+ // add quantity list
+  const mas = document.createElement('button');
+  mas.id = `list-${itemL.name}-+`;
+  mas.type = 'button';
+  mas.classList = 'btn btn-primary';
+  mas.textContent = '+';
+  buttonContainer.appendChild(mas);
+````
 ## Error handeling & debuging
 
 ````javaScript
